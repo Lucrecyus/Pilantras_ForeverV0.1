@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Inimigos/Vant/Vant_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Objetos/luzazul.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Objetos/luzRed.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Vant.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8, 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.247059 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.223529 ), Color( 1, 1, 1, 0.105882 ), Color( 1, 1, 1, 0.117647 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 24.9084, 17.3857 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 35.9083, 10 )
+
+[node name="Vant" type="StaticBody2D"]
+collision_layer = 0
+collision_mask = 2147483682
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 121.089, 63.9081 )
+texture = ExtResource( 1 )
+hframes = 3
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "flying"
+anims/Death = SubResource( 1 )
+anims/flying = SubResource( 2 )
+
+[node name="Colisor" type="CollisionShape2D" parent="."]
+position = Vector2( 120.93, 65.6468 )
+shape = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 93.889, 46.6225 )
+scale = Vector2( 0.32639, 0.301393 )
+texture = ExtResource( 2 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 149.252, 42.579 )
+scale = Vector2( 0.330132, 0.338809 )
+texture = ExtResource( 2 )
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( 120.629, 60.5384 )
+scale = Vector2( 0.153344, 0.125541 )
+texture = ExtResource( 3 )
+
+[node name="Light2D4" type="Light2D" parent="."]
+position = Vector2( 82.8918, 99.4441 )
+scale = Vector2( 0.459826, 0.456744 )
+texture = ExtResource( 2 )
+
+[node name="Light2D5" type="Light2D" parent="."]
+position = Vector2( 151.345, 99.971 )
+scale = Vector2( 0.388737, 0.467969 )
+texture = ExtResource( 2 )
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+position = Vector2( 122.91, 56.6843 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="Detector" to="." method="_on_Detector_body_entered"]

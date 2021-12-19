@@ -1,0 +1,234 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Inimigos/Ghost_soldier/Ghost_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Ghost.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/game_over.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Player/barraHP_Progress.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Player/barraHP.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Objetos/luzazul.png" type="Texture" id=6]
+[ext_resource path="res://Sons_Pilantras/laser_ghost.wav" type="AudioStream" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Die"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ghost_sprites:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.1, 1.7, 2.3, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.47451 ), Color( 1, 1, 1, 0.827451 ), Color( 1, 1, 1, 0.376471 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ghost_sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ghost_sprites:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ghost_sprites:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.254902 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Ghost_sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Ghost_sprites:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "laser"
+} ]
+}
+
+[sub_resource type="CapsuleShape2D" id=5]
+height = 42.6414
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 182.703, 10 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 177.639, 10 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 60
+font_data = ExtResource( 3 )
+
+[node name="Ghost" type="KinematicBody2D"]
+scale = Vector2( 1.2, 1.2 )
+collision_layer = 4
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_vertical_guides_": [ -32.4083 ]
+}
+
+[node name="Ghost_sprites" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 8
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Die = SubResource( 1 )
+anims/Idle = SubResource( 2 )
+anims/Invisible = SubResource( 3 )
+anims/Shot = SubResource( 4 )
+
+[node name="Colisor" type="CollisionShape2D" parent="."]
+position = Vector2( -4, 2 )
+shape = SubResource( 5 )
+
+[node name="Reset_dano" type="Timer" parent="."]
+one_shot = true
+
+[node name="Shot_start" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Detector_D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector_D"]
+position = Vector2( 191.327, -16.6855 )
+shape = SubResource( 6 )
+
+[node name="Detector_E" type="Area2D" parent="."]
+position = Vector2( -385.833, 0 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector_E"]
+position = Vector2( 191.327, -16.6855 )
+shape = SubResource( 7 )
+
+[node name="Shot_reset" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( -27.6667, -6 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HP" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 894.756
+margin_top = 23.8965
+margin_right = 1004.76
+margin_bottom = 43.8965
+value = 100.0
+texture_under = ExtResource( 4 )
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 4 )
+tint_under = Color( 1, 0, 0, 1 )
+tint_progress = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 894.405
+margin_top = -9.32728
+margin_right = 952.405
+margin_bottom = 25.6727
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.901961, 0.129412, 0.0705882, 1 )
+custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "BOSS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( -1.87078, 0.467695 )
+texture = ExtResource( 6 )
+
+[node name="Laser" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
+[connection signal="timeout" from="Reset_dano" to="." method="_on_Reset_dano_timeout"]
+[connection signal="timeout" from="Shot_start" to="." method="_on_Shot_start_timeout"]
+[connection signal="body_entered" from="Detector_D" to="." method="_on_Detector_D_body_entered"]
+[connection signal="body_entered" from="Detector_E" to="." method="_on_Detector_E_body_entered"]
+[connection signal="timeout" from="Shot_reset" to="." method="_on_Shot_reset_timeout"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

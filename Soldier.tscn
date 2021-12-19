@@ -1,0 +1,270 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://Assets/Inimigos/Soldier/Soldier_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Soldier.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar2.png" type="Texture" id=4]
+[ext_resource path="res://Sons_Pilantras/dandosocoforte (mp3cut.net).wav" type="AudioStream" id=5]
+[ext_resource path="res://Sons_Pilantras/inimigo morrer (online-audio-converter (mp3cut.net).wav" type="AudioStream" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier_sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Soco"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier_sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier_sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "dano"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier_sprites:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0.027451, 0.027451, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("dieFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="CapsuleShape2D" id=6]
+radius = 9.36354
+height = 43.4848
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 81.7725
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 82.091
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 5.66747, 29.5561 )
+
+[sub_resource type="CapsuleShape2D" id=10]
+radius = 26.2918
+height = 5.45021
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 2.41504, 26.0621 )
+
+[node name="Soldier" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 36.2491, 105.033, -140.762, -60.7725, 102.914 ],
+"_edit_vertical_guides_": [ 0.112137 ]
+}
+danosoco = 5
+dano_socoforte = 20
+danochute = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 1 )
+anims/Soco = SubResource( 2 )
+anims/Walk = SubResource( 3 )
+anims/dano = SubResource( 4 )
+anims/die = SubResource( 5 )
+
+[node name="Soldier_sprites" type="Sprite" parent="."]
+position = Vector2( 25.7851, 37.4028 )
+texture = ExtResource( 1 )
+vframes = 11
+hframes = 19
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 21.8267, 34.8284 )
+shape = SubResource( 6 )
+one_way_collision_margin = 15.0
+
+[node name="HP_Soldier" type="TextureProgress" parent="."]
+margin_left = 9.12755
+margin_top = -4.36535
+margin_right = 24.1275
+margin_bottom = 0.634647
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 1, 0, 0, 1 )
+tint_progress = Color( 0.207843, 0.882353, 0.0705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DetectorD" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2147483650
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorD"]
+position = Vector2( 129.195, 21.6607 )
+shape = SubResource( 7 )
+
+[node name="DetectorE" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2147483650
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorE"]
+position = Vector2( -85.5447, 21.3091 )
+shape = SubResource( 8 )
+
+[node name="AtackDetector" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AtackDetector"]
+modulate = Color( 0.203922, 0.188235, 0.694118, 1 )
+position = Vector2( 42, 35 )
+shape = SubResource( 9 )
+disabled = true
+
+[node name="ResetDano" type="Timer" parent="."]
+one_shot = true
+
+[node name="CanAttack" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanAttack"]
+position = Vector2( 21.9858, 34.9071 )
+shape = SubResource( 10 )
+
+[node name="ResetAttack" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="DanoGolpes" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="SocoFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 10.0
+
+[node name="dieFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = 2.562
+
+[node name="Dash" type="Area2D" parent="."]
+position = Vector2( -2, 0 )
+collision_layer = 4
+collision_mask = 34
+
+[node name="To_Left" type="CollisionShape2D" parent="Dash"]
+modulate = Color( 0.733333, 0.0470588, 0.0470588, 1 )
+position = Vector2( 30.8858, 35.0564 )
+shape = SubResource( 11 )
+
+[node name="Dash2" type="Area2D" parent="."]
+position = Vector2( -18, -1 )
+collision_layer = 4
+collision_mask = 34
+
+[node name="To_Right" type="CollisionShape2D" parent="Dash2"]
+modulate = Color( 0.215686, 0.0117647, 0.0117647, 1 )
+position = Vector2( 32.8858, 36.0564 )
+shape = SubResource( 11 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+[connection signal="body_entered" from="DetectorD" to="." method="_on_DetectorD_body_entered"]
+[connection signal="body_exited" from="DetectorD" to="." method="_on_DetectorD_body_exited"]
+[connection signal="body_entered" from="DetectorE" to="." method="_on_DetectorE_body_entered"]
+[connection signal="body_exited" from="DetectorE" to="." method="_on_DetectorE_body_exited"]
+[connection signal="body_entered" from="AtackDetector" to="." method="_on_AtackDetector_body_entered"]
+[connection signal="timeout" from="ResetDano" to="." method="_on_ResetDano_timeout"]
+[connection signal="body_entered" from="CanAttack" to="." method="_on_CanAttack_body_entered"]
+[connection signal="body_exited" from="CanAttack" to="." method="_on_CanAttack_body_exited"]
+[connection signal="timeout" from="ResetAttack" to="." method="_on_ResetAttack_timeout"]
+[connection signal="timeout" from="DanoGolpes" to="." method="_on_DanoGolpes_timeout"]
+[connection signal="area_shape_entered" from="Dash" to="." method="_on_Dash_area_shape_entered"]
+[connection signal="area_shape_entered" from="Dash2" to="." method="_on_Dash2_area_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

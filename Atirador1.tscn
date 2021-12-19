@@ -1,0 +1,187 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/Inimigos/Soldier/Soldier_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Atirador1.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar2.png" type="Texture" id=4]
+[ext_resource path="res://Sons_Pilantras/tirodoze (mp3cut.net).wav" type="AudioStream" id=5]
+[ext_resource path="res://Sons_Pilantras/atirador_morre (online-audio-converter.com).wav" type="AudioStream" id=6]
+
+[sub_resource type="Animation" id=1]
+resource_name = "atirar"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier_sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 10, 9 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "dano"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier_sprites:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("dieFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Soldier_sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 14.9261
+height = 43.4154
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 204.767, 8.91742 )
+
+[node name="Atirador1" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 35
+script = ExtResource( 2 )
+
+[node name="Soldier_sprites" type="Sprite" parent="."]
+position = Vector2( 7.09961, -0.131287 )
+texture = ExtResource( 1 )
+vframes = 11
+hframes = 21
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/atirar = SubResource( 1 )
+anims/dano = SubResource( 2 )
+anims/die = SubResource( 3 )
+anims/idle = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.420441, -4.05597 )
+shape = SubResource( 5 )
+one_way_collision_margin = 15.0
+
+[node name="DetectorD" type="Area2D" parent="."]
+position = Vector2( -132.149, 168.19 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorD"]
+position = Vector2( 317.356, -174.874 )
+scale = Vector2( 0.85, 1 )
+shape = SubResource( 6 )
+
+[node name="DetectorE" type="Area2D" parent="."]
+position = Vector2( -452.01, 168.396 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorE"]
+position = Vector2( 265.981, -175.191 )
+scale = Vector2( 0.85, 1 )
+shape = SubResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Primeiro_tiro" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 23, -7.511 )
+
+[node name="HP_Soldier" type="TextureProgress" parent="."]
+margin_left = -6.74645
+margin_top = -40.0819
+margin_right = 8.25355
+margin_bottom = -35.0819
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 1, 0, 0, 1 )
+tint_progress = Color( 0.207843, 0.882353, 0.0705882, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TirodozeFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="dieFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -19.697
+[connection signal="body_entered" from="DetectorD" to="." method="_on_DetectorD_body_entered"]
+[connection signal="body_exited" from="DetectorD" to="." method="_on_DetectorD_body_exited"]
+[connection signal="body_entered" from="DetectorE" to="." method="_on_DetectorE_body_entered"]
+[connection signal="body_exited" from="DetectorE" to="." method="_on_DetectorE_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Primeiro_tiro" to="." method="_on_Primeiro_tiro_timeout"]

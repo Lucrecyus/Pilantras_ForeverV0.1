@@ -1,0 +1,198 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/SelectFases.gd" type="Script" id=1]
+[ext_resource path="res://Sons_Pilantras/Pilantras Seleção de Fases.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Sons_Pilantras/select.ogg" type="AudioStream" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "complete"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 1, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "complete"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 1, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "complete"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 1, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "complete"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 1, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "complete"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 3,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 1, 0, 1 ) ]
+}
+
+[node name="SelectFases" type="Control"]
+pause_mode = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_right = 139.0
+margin_bottom = 92.0
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 139.0
+margin_bottom = 20.0
+text = "Stage 1 - Shanghai"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="CenterContainer/VBoxContainer/Button"]
+anims/complete = SubResource( 1 )
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 139.0
+margin_bottom = 44.0
+text = "Stage 2 - Hong Kong"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim2" type="AnimationPlayer" parent="CenterContainer/VBoxContainer/Button2"]
+anims/complete = SubResource( 2 )
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer"]
+visible = false
+margin_top = 48.0
+margin_right = 139.0
+margin_bottom = 68.0
+text = "Stage 3 - Moscow"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim3" type="AnimationPlayer" parent="CenterContainer/VBoxContainer/Button3"]
+anims/complete = SubResource( 3 )
+
+[node name="Button4" type="Button" parent="CenterContainer/VBoxContainer"]
+visible = false
+margin_top = 48.0
+margin_right = 139.0
+margin_bottom = 68.0
+text = "Stage 4 - Tokyo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim4" type="AnimationPlayer" parent="CenterContainer/VBoxContainer/Button4"]
+anims/complete = SubResource( 4 )
+
+[node name="Button5" type="Button" parent="CenterContainer/VBoxContainer"]
+visible = false
+margin_top = 48.0
+margin_right = 139.0
+margin_bottom = 68.0
+text = "Stage 5 - Jakarta"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim5" type="AnimationPlayer" parent="CenterContainer/VBoxContainer/Button5"]
+anims/complete = SubResource( 5 )
+
+[node name="back" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 139.0
+margin_bottom = 68.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 139.0
+margin_bottom = 92.0
+text = "Reset"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 8.0
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button4" to="." method="_on_Button4_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button5" to="." method="_on_Button5_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Reset" to="." method="_on_Reset_pressed"]

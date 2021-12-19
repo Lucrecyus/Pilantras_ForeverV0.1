@@ -1,0 +1,99 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Fonts/game_over.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=2]
+[ext_resource path="res://trilhas/openteste.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sons_Pilantras/select.ogg" type="AudioStream" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 1 )
+
+[node name="Menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 454.0
+margin_top = 254.0
+margin_right = 569.0
+margin_bottom = 346.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_right = 115.0
+margin_bottom = 20.0
+focus_neighbour_bottom = NodePath("../QG")
+text = "START"
+
+[node name="QG" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 115.0
+margin_bottom = 44.0
+focus_neighbour_top = NodePath("../Start")
+focus_neighbour_bottom = NodePath("../Versus")
+disabled = true
+text = "HEADQUARTERS"
+
+[node name="Versus" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 48.0
+margin_right = 115.0
+margin_bottom = 68.0
+focus_neighbour_top = NodePath("../QG")
+focus_neighbour_bottom = NodePath("../Quit")
+text = "VERSUS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 115.0
+margin_bottom = 92.0
+focus_neighbour_top = NodePath("../Versus")
+focus_neighbour_bottom = NodePath("../Start")
+text = "QUIT"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 15.0
+
+[node name="select" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 8.0
+
+[node name="Pilantras" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.5
+margin_top = -100.0
+margin_right = 137.5
+margin_bottom = -60.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.0392157, 0.160784, 0.372549, 1 )
+custom_colors/font_color_shadow = Color( 0.419608, 0.0941176, 0.0941176, 1 )
+text = "PILANTRAS FOREVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="focus_entered" from="." to="." method="_on_Menu_focus_entered"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QG" to="." method="_on_QG_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Versus" to="." method="_on_Versus_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

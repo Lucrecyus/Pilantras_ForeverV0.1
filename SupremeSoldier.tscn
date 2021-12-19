@@ -1,0 +1,275 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Assets/Inimigos/Boss 1/boss1_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/SupremeSoldier.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Objetos/barreira2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Objetos/barreira3.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Objetos/barreira1.png" type="Texture" id=7]
+[ext_resource path="res://Sons_Pilantras/laserboss.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sons_Pilantras/inimigo morrer (online-audio-converter (mp3cut.net).wav" type="AudioStream" id=9]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 12.0257
+height = 35.3745
+
+[sub_resource type="Animation" id=2]
+resource_name = "Death"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.160784 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.564706 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("Die")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("soldier:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("soldier:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 6 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("soldier:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.9
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("soldier:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 4 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("soldier:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.933333, 0.0470588, 0.0470588, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 173.563, 44.9061 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "barreira",
+"speed": 7.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 1.64534, 30.8219 )
+
+[node name="SupremeSoldier" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 35
+script = ExtResource( 2 )
+
+[node name="soldier" type="Sprite" parent="."]
+position = Vector2( 1.90735e-06, 0 )
+scale = Vector2( 0.8, 0.7 )
+texture = ExtResource( 1 )
+hframes = 7
+
+[node name="colisor" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jump = SubResource( 4 )
+anims/Shot = SubResource( 5 )
+anims/Walk = SubResource( 6 )
+anims/dano = SubResource( 7 )
+
+[node name="Direita" type="Area2D" parent="."]
+position = Vector2( 186.642, 0 )
+collision_layer = 0
+collision_mask = 34
+
+[node name="detectorD" type="CollisionShape2D" parent="Direita"]
+modulate = Color( 0.180392, 0.203922, 0.545098, 1 )
+shape = SubResource( 8 )
+
+[node name="Esquerda" type="Area2D" parent="."]
+position = Vector2( 186.642, 0 )
+collision_layer = 0
+collision_mask = 34
+
+[node name="detectorE" type="CollisionShape2D" parent="Esquerda"]
+modulate = Color( 0.12549, 0.145098, 0.427451, 1 )
+position = Vector2( -373, 0 )
+shape = SubResource( 8 )
+
+[node name="Jump" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="Shot" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Floor" type="Timer" parent="."]
+one_shot = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 35.8522, -8 )
+
+[node name="HP" type="TextureProgress" parent="."]
+margin_left = -6.61459
+margin_top = -41.2873
+margin_right = 8.38541
+margin_bottom = -36.2873
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 1, 0, 0, 1 )
+tint_progress = Color( 0, 1, 0.0392157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shield" type="TextureProgress" parent="."]
+margin_left = -6.61459
+margin_top = -46.9019
+margin_right = 8.38541
+margin_bottom = -41.9019
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 0, 0.25098, 1, 0.521569 )
+tint_progress = Color( 0.00392157, 0.00784314, 0.862745, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetDano" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
+frames = SubResource( 9 )
+animation = "barreira"
+frame = 2
+
+[node name="TiroFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+
+[node name="Die" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+
+[node name="Dash_to_right" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash_to_right"]
+position = Vector2( -14, 0 )
+shape = SubResource( 10 )
+
+[node name="Dash_to_left" type="Area2D" parent="."]
+position = Vector2( 28, 0 )
+collision_layer = 4
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dash_to_left"]
+position = Vector2( -14, 0 )
+shape = SubResource( 10 )
+[connection signal="body_entered" from="Direita" to="." method="_on_Direita_body_entered"]
+[connection signal="body_exited" from="Direita" to="." method="_on_Direita_body_exited"]
+[connection signal="body_entered" from="Esquerda" to="." method="_on_Esquerda_body_entered"]
+[connection signal="body_exited" from="Esquerda" to="." method="_on_Esquerda_body_exited"]
+[connection signal="timeout" from="Jump" to="." method="_on_Jump_timeout"]
+[connection signal="timeout" from="Shot" to="." method="_on_Shot_timeout"]
+[connection signal="timeout" from="Floor" to="." method="_on_Floor_timeout"]
+[connection signal="timeout" from="ResetDano" to="." method="_on_ResetDano_timeout"]
+[connection signal="area_entered" from="Dash_to_right" to="." method="_on_Dash_to_right_area_entered"]
+[connection signal="area_entered" from="Dash_to_left" to="." method="_on_Dash_to_left_area_entered"]

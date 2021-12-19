@@ -1,0 +1,177 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatu.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/CyberTatu.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/enemy_hpbar2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatuRun4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatuRun2.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatuRun.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatuRun1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatuDie.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatuDie2.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Inimigos/CyberTatu/CyberTatuDie1.png" type="Texture" id=11]
+[ext_resource path="res://Sons_Pilantras/cybertatu (mp3cut.net).wav" type="AudioStream" id=12]
+[ext_resource path="res://Sons_Pilantras/droneDie.wav" type="AudioStream" id=13]
+[ext_resource path="res://Assets/Objetos/luzazul.png" type="Texture" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Die",
+"speed": 6.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 15.25, 9 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.0968, 9.23837 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 160.067, 30.7627 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Death"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("dieFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.055409,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 16.0963, 9.34636 )
+
+[node name="CyberTatu" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 35
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -47.5 ]
+}
+danosoco = 10
+dano_socoforte = 30
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.25, 6 )
+shape = SubResource( 2 )
+
+[node name="HP_Enemy" type="TextureProgress" parent="."]
+margin_left = -6.74645
+margin_top = -8.53228
+margin_right = 8.25355
+margin_bottom = -3.53228
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 0.839216, 0.0313726, 0.0313726, 1 )
+tint_progress = Color( 0.156863, 0.709804, 0.0235294, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color( 0.521569, 0.231373, 0.231373, 1 )
+position = Vector2( 0, 5 )
+shape = SubResource( 3 )
+
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+modulate = Color( 0.0509804, 0.0823529, 0.917647, 1 )
+position = Vector2( -175.962, -17.0585 )
+shape = SubResource( 4 )
+
+[node name="DetectorD" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorD"]
+modulate = Color( 0.0509804, 0.0823529, 0.917647, 1 )
+position = Vector2( 175.663, -16.5148 )
+shape = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Death = SubResource( 5 )
+
+[node name="runFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 12 )
+
+[node name="dieFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+volume_db = 7.61
+
+[node name="Light2D" type="Light2D" parent="."]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 14 )
+
+[node name="Dano" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dano"]
+position = Vector2( 0, 5 )
+shape = SubResource( 6 )
+[connection signal="body_entered" from="Detector" to="." method="_on_Detector_body_entered"]
+[connection signal="body_exited" from="Detector" to="." method="_on_Detector_body_exited"]
+[connection signal="body_entered" from="DetectorD" to="." method="_on_DetectorD_body_entered"]
+[connection signal="body_exited" from="DetectorD" to="." method="_on_DetectorD_body_exited"]
+[connection signal="body_entered" from="Dano" to="." method="_on_Dano_body_entered"]

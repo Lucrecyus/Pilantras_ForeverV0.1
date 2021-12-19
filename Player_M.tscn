@@ -1,0 +1,949 @@
+[gd_scene load_steps=68 format=2]
+
+[ext_resource path="res://Assets/Player/Li_Sprites.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player_M.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Player/barraHP_Progress.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Player/barraHP.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Fonts/game_over.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Objetos/cartucho.png" type="Texture" id=6]
+[ext_resource path="res://Sons_Pilantras/pulo (mp3cut.net).wav" type="AudioStream" id=7]
+[ext_resource path="res://Sons_Pilantras/dandosocoforte (mp3cut.net).wav" type="AudioStream" id=8]
+[ext_resource path="res://Sons_Pilantras/dandochute (mp3cut.net).wav" type="AudioStream" id=9]
+[ext_resource path="res://Sons_Pilantras/dandosocofraco (mp3cut.net).wav" type="AudioStream" id=10]
+[ext_resource path="res://Sons_Pilantras/tiro (mp3cut.net).wav" type="AudioStream" id=11]
+[ext_resource path="res://Sons_Pilantras/soco_fraco (mp3cut.net).wav" type="AudioStream" id=12]
+[ext_resource path="res://Sons_Pilantras/soco_forte (mp3cut.net).wav" type="AudioStream" id=13]
+[ext_resource path="res://Sons_Pilantras/chute (mp3cut.net).wav" type="AudioStream" id=14]
+[ext_resource path="res://Sons_Pilantras/tirobate (mp3cut.net).wav" type="AudioStream" id=15]
+[ext_resource path="res://Sons_Pilantras/morrer (online-audio-converter (mp3cut.net).wav" type="AudioStream" id=16]
+[ext_resource path="res://Sons_Pilantras/argh (mp3cut.net).wav" type="AudioStream" id=17]
+[ext_resource path="res://Sons_Pilantras/outch (mp3cut.net).wav" type="AudioStream" id=18]
+[ext_resource path="res://Sons_Pilantras/clic (online-audio-converter.com).wav" type="AudioStream" id=19]
+[ext_resource path="res://Sons_Pilantras/Damage.wav" type="AudioStream" id=20]
+[ext_resource path="res://Sons_Pilantras/laserexplode .wav" type="AudioStream" id=21]
+[ext_resource path="res://Assets/Objetos/light_tiro.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Objetos/granada.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Objetos/selected_Transparent.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Objetos/bazooka.png" type="Texture" id=25]
+[ext_resource path="res://Sons_Pilantras/bazuca.wav" type="AudioStream" id=26]
+[ext_resource path="res://Sons_Pilantras/tirodoze (mp3cut.net).wav" type="AudioStream" id=29]
+[ext_resource path="res://Sons_Pilantras/Ultra_drone_down.wav" type="AudioStream" id=30]
+[ext_resource path="res://Sons_Pilantras/Ultra_drone.wav" type="AudioStream" id=31]
+[ext_resource path="res://Assets/Objetos/escudoazul.png" type="Texture" id=32]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Attack1_L"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 25, 23 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Attack1_R"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 24, 22 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Attack_L"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 21 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Attack_R"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 20 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Curado"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 28 ]
+}
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 29 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Li_Sprites:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "Drone"
+length = 1.5
+loop = true
+
+[sub_resource type="Animation" id=9]
+loop = true
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+
+[sub_resource type="Animation" id=10]
+loop = true
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 18 ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 16 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 27 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 26 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Shield_L"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 48 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "Shield_R"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 47 ]
+}
+
+[sub_resource type="Animation" id=17]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 34, 35, 36 ]
+}
+
+[sub_resource type="Animation" id=18]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 30, 31, 32 ]
+}
+
+[sub_resource type="Animation" id=19]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=20]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9 ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 37 ]
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 38 ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 22 ]
+}
+
+[sub_resource type="Animation" id=24]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 23 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 43, 45 ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Li_Sprites:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 39, 41 ]
+}
+
+[sub_resource type="Animation" id=27]
+resource_name = "modular"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0.964706, 0.678431, 0, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 4.96564, 5.107 )
+
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 6.56059, 14.8352 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 7.88254, 14.3579 )
+
+[sub_resource type="CapsuleShape2D" id=31]
+radius = 14.4478
+height = 31.6956
+
+[sub_resource type="Animation" id=32]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:tint_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.0862745, 0.94902, 0.0352941, 1 ), Color( 0.0352941, 0.411765, 0.94902, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=33]
+size = 70
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 50
+outline_size = 1
+outline_color = Color( 0.396078, 0.34902, 0.14902, 1 )
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=35]
+
+[sub_resource type="RectangleShape2D" id=36]
+extents = Vector2( 10.8246, 2.79887 )
+
+[sub_resource type="RectangleShape2D" id=37]
+extents = Vector2( 11.9401, 5.53111 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 75
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 58.9103, 59.8542, -102.916, 13.8462 ],
+"_edit_vertical_guides_": [ -99.7012, -29.8326, -25.0, -65.33, 64.3144, -24.026 ]
+}
+balas = 100
+granadas = 100
+missel = 100
+escudo = 100
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "Idle_R"
+anims/Attack1_L = SubResource( 1 )
+anims/Attack1_R = SubResource( 2 )
+anims/Attack_L = SubResource( 3 )
+anims/Attack_R = SubResource( 4 )
+anims/Curado = SubResource( 5 )
+anims/Dano = SubResource( 6 )
+anims/Die = SubResource( 7 )
+anims/Drone = SubResource( 8 )
+anims/Idle_L = SubResource( 9 )
+anims/Idle_R = SubResource( 10 )
+anims/Jump_L = SubResource( 11 )
+anims/Jump_R = SubResource( 12 )
+anims/Kick_L = SubResource( 13 )
+anims/Kick_R = SubResource( 14 )
+anims/Shield_L = SubResource( 15 )
+anims/Shield_R = SubResource( 16 )
+anims/Shoot_L = SubResource( 17 )
+anims/Shoot_R = SubResource( 18 )
+anims/Walk_L = SubResource( 19 )
+anims/Walk_R = SubResource( 20 )
+anims/agachar = SubResource( 21 )
+anims/agachar_L = SubResource( 22 )
+anims/arremeco = SubResource( 23 )
+anims/arremeco_L = SubResource( 24 )
+anims/bazoka_L = SubResource( 25 )
+anims/bazoka_R = SubResource( 26 )
+anims/modular = SubResource( 27 )
+
+[node name="Li_Sprites" type="Sprite" parent="."]
+position = Vector2( 1, -3 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 13
+frame = 25
+
+[node name="ResetAttack" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 258
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2( 20.2993, -14.7414 )
+shape = SubResource( 28 )
+disabled = true
+
+[node name="AttackArea1" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea1"]
+position = Vector2( 21.2895, -12.4032 )
+shape = SubResource( 29 )
+disabled = true
+
+[node name="AttackArea2" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2"]
+position = Vector2( 25.2901, 8.40644 )
+shape = SubResource( 30 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2.12372, -6.99661 )
+shape = SubResource( 31 )
+
+[node name="ShootReset" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Tiro_R" type="Position2D" parent="."]
+position = Vector2( 17.5964, -18.6245 )
+
+[node name="Tiro_L" type="Position2D" parent="."]
+position = Vector2( -20.4036, -18.6245 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HPplayer" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 10.0
+margin_top = 30.0
+margin_right = 120.0
+margin_bottom = 50.0
+value = 100.0
+texture_under = ExtResource( 3 )
+texture_over = ExtResource( 4 )
+texture_progress = ExtResource( 3 )
+tint_under = Color( 0.843137, 0.0509804, 0.0509804, 1 )
+tint_progress = Color( 0.0862745, 0.94902, 0.0352941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anim" type="AnimationPlayer" parent="CanvasLayer/HPplayer"]
+anims/Drone_HP = SubResource( 32 )
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_left = 26.3751
+margin_top = 56.2136
+margin_right = 86.3751
+margin_bottom = 96.2136
+custom_fonts/font = SubResource( 33 )
+custom_colors/font_color = Color( 0.827451, 0.894118, 0.027451, 1 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="granadas" type="Label" parent="CanvasLayer"]
+margin_left = 101.705
+margin_top = 55.7526
+margin_right = 161.705
+margin_bottom = 95.7526
+custom_fonts/font = SubResource( 33 )
+custom_colors/font_color = Color( 0.827451, 0.894118, 0.027451, 1 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="misseis" type="Label" parent="CanvasLayer"]
+margin_left = 180.549
+margin_top = 56.2136
+margin_right = 240.549
+margin_bottom = 96.2136
+custom_fonts/font = SubResource( 33 )
+custom_colors/font_color = Color( 0.827451, 0.894118, 0.027451, 1 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="barreira" type="Label" parent="CanvasLayer"]
+margin_left = 262.116
+margin_top = 56.3158
+margin_right = 322.116
+margin_bottom = 96.3158
+custom_fonts/font = SubResource( 33 )
+custom_colors/font_color = Color( 0.827451, 0.894118, 0.027451, 1 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 32, 78 )
+scale = Vector2( 1.98883, 2.80109 )
+texture = ExtResource( 6 )
+
+[node name="shield" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 267.839, 78.1225 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 32 )
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+margin_left = 10.0
+margin_top = 4.0
+margin_right = 146.0
+margin_bottom = 33.0
+custom_fonts/font = SubResource( 34 )
+custom_colors/font_color = Color( 0.623529, 0.756863, 0.0823529, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "FENG"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="granada" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 108.844, 75.7976 )
+rotation = 0.534071
+scale = Vector2( 2, 3 )
+texture = ExtResource( 23 )
+
+[node name="selected" type="ColorRect" parent="CanvasLayer"]
+margin_left = 10.0
+margin_top = 60.0
+margin_right = 90.0
+margin_bottom = 140.0
+rect_scale = Vector2( 0.5, 0.4 )
+theme = SubResource( 35 )
+color = Color( 0, 1, 0, 0.27451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selected_Transp" type="Sprite" parent="CanvasLayer/selected"]
+position = Vector2( 39.5, 40.625 )
+texture = ExtResource( 24 )
+
+[node name="selected3" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 170.154
+margin_top = 61.4983
+margin_right = 250.154
+margin_bottom = 141.499
+rect_scale = Vector2( 0.5, 0.4 )
+theme = SubResource( 35 )
+color = Color( 0, 1, 0, 0.27451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selected_Transp" type="Sprite" parent="CanvasLayer/selected3"]
+position = Vector2( 39.0186, 40.625 )
+texture = ExtResource( 24 )
+
+[node name="selected4" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 248.165
+margin_top = 62.6208
+margin_right = 328.165
+margin_bottom = 142.621
+rect_scale = Vector2( 0.5, 0.4 )
+theme = SubResource( 35 )
+color = Color( 0, 1, 0, 0.27451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selected_Transp" type="Sprite" parent="CanvasLayer/selected4"]
+position = Vector2( 39.0186, 40.625 )
+texture = ExtResource( 24 )
+
+[node name="selected2" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_left = 90.0
+margin_top = 60.0
+margin_right = 170.0
+margin_bottom = 140.0
+rect_scale = Vector2( 0.5, 0.4 )
+theme = SubResource( 35 )
+color = Color( 0, 1, 0, 0.27451 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="selected_Transp2" type="Sprite" parent="CanvasLayer/selected2"]
+position = Vector2( 38.5164, 40.3523 )
+texture = ExtResource( 24 )
+
+[node name="bazzoka" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 188.639, 77.4814 )
+rotation = -1.5708
+scale = Vector2( 0.4, 0.5 )
+texture = ExtResource( 25 )
+
+[node name="DanoReset" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -80 )
+current = true
+zoom = Vector2( 0.7, 0.7 )
+limit_left = -100
+smoothing_enabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="Camera2D"]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="PuloFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = 3.0
+
+[node name="socofracoFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = 5.0
+
+[node name="socoforteFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = 6.935
+
+[node name="chuteFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+
+[node name="TiroFx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = 10.0
+
+[node name="punchfracoFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = 6.0
+
+[node name="punchforteFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = 6.0
+
+[node name="kickFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+
+[node name="danoFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = 5.0
+
+[node name="morrerFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = 0.885
+
+[node name="danosocoFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -19.676
+
+[node name="danotatuFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -12.649
+
+[node name="clicFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = 2.0
+
+[node name="lifeFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+volume_db = -7.027
+
+[node name="Agachado" type="CollisionShape2D" parent="."]
+modulate = Color( 0.780392, 0.0784314, 0.858824, 1 )
+position = Vector2( -1.83201, 21.6866 )
+shape = SubResource( 36 )
+disabled = true
+
+[node name="ataque1" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="laserexplodeFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 21 )
+
+[node name="DashD" type="Area2D" parent="."]
+position = Vector2( -23.8625, -7.84218 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashD"]
+position = Vector2( 6.24379, 1.90556 )
+shape = SubResource( 37 )
+
+[node name="DashE" type="Area2D" parent="."]
+position = Vector2( 7.34387, -7.67194 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DashE"]
+position = Vector2( 6.00678, 1.8354 )
+shape = SubResource( 37 )
+
+[node name="Light2D" type="Light2D" parent="."]
+visible = false
+position = Vector2( -1.20876, -27.127 )
+texture = ExtResource( 22 )
+
+[node name="Arremeco" type="Position2D" parent="."]
+position = Vector2( 13.696, -43.9371 )
+
+[node name="Arremeco2" type="Position2D" parent="."]
+position = Vector2( -18.304, -43.9371 )
+
+[node name="tiromissel" type="Position2D" parent="."]
+position = Vector2( 31.8103, -14.2886 )
+
+[node name="tiromissel2" type="Position2D" parent="."]
+position = Vector2( -32.1897, -14.2886 )
+
+[node name="MisselReset" type="Timer" parent="."]
+one_shot = true
+
+[node name="bazuca" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+volume_db = 8.49
+
+[node name="Tiro_drone" type="Position2D" parent="."]
+position = Vector2( 67.4058, 12.5992 )
+
+[node name="tiro_drone" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 29 )
+
+[node name="DroneFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 31 )
+volume_db = -8.49
+
+[node name="DroneFX2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 30 )
+volume_db = -9.551
+
+[node name="shield1" type="Position2D" parent="."]
+position = Vector2( -104.895, -59.1369 )
+
+[node name="shield2" type="Position2D" parent="."]
+position = Vector2( 24.7977, -57.7227 )
+
+[node name="Player_name" type="Label" parent="."]
+margin_left = -59.2162
+margin_top = -57.1369
+margin_right = 66.7838
+margin_bottom = -35.1369
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sair" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+[connection signal="timeout" from="ResetAttack" to="." method="_on_ResetAttack_timeout"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]
+[connection signal="body_entered" from="AttackArea1" to="." method="_on_AttackArea1_body_entered"]
+[connection signal="body_entered" from="AttackArea2" to="." method="_on_AttackArea2_body_entered"]
+[connection signal="timeout" from="ShootReset" to="." method="_on_ShootReset_timeout"]
+[connection signal="timeout" from="DanoReset" to="." method="_on_DanoReset_timeout"]
+[connection signal="timeout" from="ataque1" to="." method="_on_ataque1_timeout"]
+[connection signal="area_shape_entered" from="DashD" to="." method="_on_DashD_area_shape_entered"]
+[connection signal="area_shape_entered" from="DashE" to="." method="_on_DashE_area_shape_entered"]
+[connection signal="timeout" from="MisselReset" to="." method="_on_MisselReset_timeout"]
+[connection signal="timeout" from="sair" to="." method="_on_sair_timeout"]

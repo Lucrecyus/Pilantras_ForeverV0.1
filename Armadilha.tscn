@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Objetos/armadilha.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Objetos/luzazul.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Armadilha.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Objetos/armadilha1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Objetos/armadilha2.png" type="Texture" id=5]
+[ext_resource path="res://Sons_Pilantras/laserexplode .wav" type="AudioStream" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "laser",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 82.114, 10 )
+
+[node name="Armadilha" type="Node2D"]
+position = Vector2( 108.627, 49.0696 )
+script = ExtResource( 3 )
+
+[node name="Anim" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "laser"
+frame = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 5.17908, 1.83082 )
+scale = Vector2( 3.79378, 1.55493 )
+texture = ExtResource( 2 )
+
+[node name="LaserBate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

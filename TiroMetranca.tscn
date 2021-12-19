@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Objetos/balametranca.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/TiroMetranca.gd" type="Script" id=2]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "tiro",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 5.49104, 2.81548 )
+
+[node name="TiroMetranca" type="Area2D"]
+z_index = 1
+collision_layer = 16
+collision_mask = 35
+script = ExtResource( 2 )
+
+[node name="balametranca" type="AnimatedSprite" parent="."]
+position = Vector2( 0.395012, -0.100849 )
+frames = SubResource( 1 )
+animation = "tiro"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.0817337, 0.113537 )
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 5.23402, 7.684 )
+rect = Rect2( -10, -10, 10, 5 )
+[connection signal="body_entered" from="." to="." method="_on_TiroMetranca_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Objetos/gradelocked.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Objetos/gradeopen.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/GateRemotoControl.gd" type="Script" id=3]
+[ext_resource path="res://Sons_Pilantras/gate (online-audio-converter (mp3cut.net).wav" type="AudioStream" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Open",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "Locked",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 33.7141, 25.2963 )
+
+[node name="GateRemotoControl" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Anim" type="AnimatedSprite" parent="."]
+z_index = -1
+frames = SubResource( 1 )
+animation = "Locked"
+flip_h = true
+
+[node name="openFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="Colisor" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colisor"]
+position = Vector2( -1.12245, 7 )
+shape = SubResource( 2 )
